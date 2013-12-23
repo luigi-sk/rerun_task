@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.authors     = ["lukasvotypka"]
   s.email       = ["lukas.votypka@gmail.com"]
   s.homepage    = ""
-  s.summary     = %q{TODO: Re-run task if is not finished}
-  s.description = %q{TODO: This gem is developed for handling rake task and re-run them if didn't finished successfully}
+  s.summary     = %q{Re-run task if is not finished}
+  s.description = %q{This gem is developed for handling rake task and re-run them if didn't finished successfully}
 
   s.rubyforge_project = "rerun_task"
 
@@ -18,8 +18,6 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 
-  # specify any dependencies here; for example:
-  # s.add_development_dependency "rspec"
-  # s.add_runtime_dependency "rest-client"
   s.add_development_dependency "test-unit"
+  s.add_development_dependency "mocha"
 end

@@ -1,4 +1,5 @@
 require 'test/unit'
+require "mocha/setup"
 require 'rerun_task'
 
 class WatchProcessTest < Test::Unit::TestCase
@@ -49,5 +50,21 @@ class WatchProcessTest < Test::Unit::TestCase
     unfinished = RerunTask::Pids.unfinished
     assert_equal(1, unfinished.size)
     assert_equal('test_example_task.rb', unfinished.first.process_name)
+  end
+
+  def test_run_from_crontab
+    path = "#{RerunTask::CONFIG['pid_dir']}/rerun_task/pids"
+    filename = "#{path}/test_example_task.rb.pid"
+    FileUtils.rm(filename) if File.exists?(filename)
+    File.open(filename, 'w') do |f|
+      f.write("1234\ntest_example_task.rb")
+    end
+
+    crontab = RerunTask::Crontab.new()
+    crontab.content = ["0 0 1,5,9,13,17,21,25,29 * * ruby test_example_task.rb"]
+    res = crontab.find_task('test_example_task.rb')
+    assert_equal("ruby test_example_task.rb", res)
+
+    RerunTask::UnfinishedRunner.crontab_retry()
   end
 end
