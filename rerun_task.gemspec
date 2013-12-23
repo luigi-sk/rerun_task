@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.version     = RerunTask::VERSION
   s.authors     = ["lukasvotypka"]
   s.email       = ["lukas.votypka@gmail.com"]
-  s.homepage    = ""
+  s.homepage    = "https://github.com/luigi-sk/rerun_task"
   s.summary     = %q{Re-run task if is not finished}
   s.description = %q{This gem is developed for handling rake task and re-run them if didn't finished successfully}
 
